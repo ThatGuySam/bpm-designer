@@ -1,0 +1,11 @@
+{
+  "name": "bpm-designer",
+  "version": "1.0.0",
+  "description": "Tool for designing lightshows based on bpm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sam Carlton",
+  "license": "ISC"
+}
