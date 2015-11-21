@@ -31,6 +31,23 @@ a {
     }
 }
 
+input,
+.ui.input input,
+.ui.input.focus input, 
+.ui.input input:focus {
+	
+	color: @blue1;
+	
+	&::-webkit-input-placeholder,
+	&:-moz-placeholder,
+	&::-moz-placeholder,
+	&:-ms-input-placeholder {
+		color: @lightSecondaryColor;
+	}
+	
+}
+
+
 .ui.header {
     font-family: @primaryFontFamily;
 }
