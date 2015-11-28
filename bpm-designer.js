@@ -6,22 +6,22 @@ if (Meteor.isClient) {
 	var bpmItemTypes = {
 		multiples:	{ 
 			icon: "×", 
-			outputs: [ 2, 0.5, 3, 4], 
+			outputs: [2, 0.5, 3, 4], 
 			getOutputs: function (bpm,x) { return bpm * x; }
 		}, 
 		divisibles:	{ 
 			icon: "÷", 
 			outputs: [1, 2, 3, 4], 
 			getOutputs: function (bpm,x) { return (bpm / 60) * x; }, 
-		},//TODO: detect if icon is value letters and add as class	
-		colors: 	{},//TODO: Sets of common colors for this BPM or speed/mood
-		songs:		{},//TODO: detect popular songs with this bpm from http://developer.echonest.com/
-		video:		{},
+		}//TODO: detect if icon is value letters and add as class	
+		//colors: 	{},//TODO: Sets of common colors for this BPM or speed/mood
+		//songs:		{},//TODO: detect popular songs with this bpm from http://developer.echonest.com/
+		//video:		{},
 	};
 	
 	Session.set('bpmValue', [
 		{
-			icon:			"×",
+			icon:		"×",
 			header:		"243",
 			secondary:	"345 456 567"
 		},
@@ -33,6 +33,47 @@ if (Meteor.isClient) {
 		parseInt(Number(value)) == value && 
 		!isNaN(parseInt(value, 10));
 	}
+	
+	function parseBPM(bpm){
+		
+		var output = [];
+		
+		for (var key in bpmItemTypes) {
+			if (bpmItemTypes.hasOwnProperty(key)) {
+				
+				var itemType = bpmItemTypes[key];
+				var outputType = {};
+				
+				outputType.icon = itemType.icon;
+				
+				outputType.header = (Math.round( itemType.getOutputs(bpm,itemType.outputs[0]) * 100 ) / 100).toString();
+				
+				outputType.secondary = "";
+				
+				for (i = 1; i < itemType.outputs.length; i++) { 
+					
+					var number = (Math.round( itemType.getOutputs(bpm,itemType.outputs[i]) * 100 ) / 100).toString();
+					
+					outputType.secondary += number + " ";
+				}
+				
+/*
+				for (var key in itemType) {
+					outputType.icon = 
+				}
+*/
+				
+				output.push( outputType );
+				
+			} else {
+				//console.log( bpmItemTypes[key] );
+			}
+		}
+		
+		return output;
+		
+	}
+	
 	
 	//Templating Functions
 	Template.body.helpers({
@@ -59,13 +100,13 @@ if (Meteor.isClient) {
 			//Is it a number
 			if( isNumber !== false ) {
 				
-				Session.set('bpmValue', []);
-				
 				var bpmInt = parseInt(bpm);
+				
+				Session.set('bpmValue', parseBPM(bpmInt));
 				
 				//console.log("The front-end says: " + bpmInt);
 				
-				Meteor.call("parseBPM", bpmInt);
+				console.log( Session.get('bpmValue') );
 				
 			} else {//Not a number
 				console.log("That's no M00N");
@@ -130,18 +171,6 @@ if (Meteor.isServer) {
 
 //Server Side Processing
 Meteor.methods({
-	parseBPM: function(bpmValue) {
-		
-		//var bpmVal = bpmValue;
-		
-		console.log( bpmValue );
-		
-	},
-	isInt: function(value) {
-		return !isNaN(value) && 
-		parseInt(Number(value)) == value && 
-		!isNaN(parseInt(value, 10));
-	},
 	deleteResolution: function(id) {
 		var res = Resolutions.findOne(id);
 		
