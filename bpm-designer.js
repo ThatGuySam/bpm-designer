@@ -83,7 +83,7 @@ if (Meteor.isClient) {
 			
 			var	bpm = event.target.value;
 			
-			//console.log( event.target.value );
+			console.log( event.target.value );
 			
 			var isNumber = isInt(bpm);
 			
@@ -93,8 +93,6 @@ if (Meteor.isClient) {
 				var bpmInt = parseInt(bpm);
 				
 				Session.set('bpmValue', parseBPM(bpmInt));
-				
-				//console.log("The front-end says: " + bpmInt);
 				
 				console.log( Session.get('bpmValue') );
 				
