@@ -88,7 +88,7 @@ if (Meteor.isClient) {
 			var isNumber = isInt(bpm);
 			
 			//Is it a number
-			if( isNumber !== false ) {
+			if( isNumber !== false && bpm != "" ) {
 				
 				var bpmInt = parseInt(bpm);
 				
@@ -96,6 +96,8 @@ if (Meteor.isClient) {
 				
 				console.log( Session.get('bpmValue') );
 				
+			} else if( bpm == "" ){
+				Session.set('bpmValue', [{}]);
 			} else {//Not a number
 				console.log("That's no M00N");
 			}
