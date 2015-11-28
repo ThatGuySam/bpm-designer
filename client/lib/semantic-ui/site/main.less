@@ -95,3 +95,30 @@ input,
         color: @secondaryLinkHoverColor;
     }
 }
+
+
+
+/* -------------------
+    Cheatcodes
+   ------------------- */
+
+.ghost-center {
+	text-align: center;
+}
+ 
+.ghost-center:before {
+	content: '';
+	display: inline-block;
+	font-size: 0;
+	text-decoration: none;
+	height: 100%; 
+	vertical-align: middle;
+	margin-right: -0.25em; /* Adjusts for spacing */
+}
+ 
+.ghost-center > div,
+.ghost-center > span,
+.ghost-center > .wpb_wrapper {
+	display: inline-block;
+	vertical-align: middle;
+}
