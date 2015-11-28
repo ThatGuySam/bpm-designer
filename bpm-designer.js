@@ -20,11 +20,7 @@ if (Meteor.isClient) {
 	};
 	
 	Session.set('bpmValue', [
-		{
-			icon:		"×",
-			header:		"243",
-			secondary:	"345 456 567"
-		},
+		{},
 	]);
 	
 	//Is number
