@@ -1,18 +1,22 @@
 <template name="bpmContainer">
 	
-	<div class="ui massive transparent input">
-		<input id="bpminput" class="bpminput" type="number" placeholder="type a bpm..." max="3" autofocus>
-	</div>
+	<div class="bpmContainer">
 	
-	<div class="bpm-output {{classes}}" style="text-align: left;">
+		<div class="ui massive transparent input">
+			<input id="bpminput" class="bpminput" type="number" placeholder="type a bpm..." min="10" max="500" width="400" autofocus>
+		</div>
 		
-		<div class="ui relaxed divided inverted list">
+		<div class="bpm-output {{classes}}" style="text-align: left;">
 			
-			{{#each bpmItems}}
-				{{> bpmItem}}
-			{{/each}}
+			<div class="ui relaxed divided inverted list">
+				
+				{{#each bpmItems}}
+					{{> bpmItem}}
+				{{/each}}
+				
+			</div><!-- .list -->
 			
-		</div><!-- .list -->
+		</div>
 		
 	</div>
 	

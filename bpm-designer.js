@@ -19,6 +19,16 @@ if (Meteor.isClient) {
 		//video:		{},
 	};
 	
+	WebFontConfig = {
+		typekit: { id: 'xes4zaz' }
+	};
+	
+	(function(d) {
+		var wf = d.createElement('script'), s = d.scripts[0];
+		wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+		s.parentNode.insertBefore(wf, s);
+	})(document);
+	
 	Session.set('bpmValue', []);
 	
 	Session.set('bpmContainer', { classes: "empty" });
@@ -113,6 +123,7 @@ if (Meteor.isClient) {
 			return false;
 		 
 		}
+		//'keydown': function(e) {}//TODO: Focus on keydown
 	});
 	
 

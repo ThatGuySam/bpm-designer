@@ -35,6 +35,8 @@ input,
 .ui.input.focus input, 
 .ui.input input:focus {
 	
+	font-family: @primaryFontFamily;
+	font-weight: 400;
 	color: @blue1;
 	
 	&::-webkit-input-placeholder {
@@ -99,7 +101,9 @@ input,
 	}
 	
 	.ui.list .list > .item .header, 
-	.ui.list > .item .header {
+	.ui.list > .item .header,
+	.ui.list > .item .description {
+		font-family: @primaryFontFamily;
 		font-weight: 100;
 	}
 }
