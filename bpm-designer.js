@@ -53,12 +53,6 @@ if (Meteor.isClient) {
 					outputType.secondary += number + " ";
 				}
 				
-/*
-				for (var key in itemType) {
-					outputType.icon = 
-				}
-*/
-				
 				output.push( outputType );
 				
 			} else {
