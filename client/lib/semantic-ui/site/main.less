@@ -65,6 +65,7 @@ input,
 
 .pusher {
 	padding: 10% 5%;
+	overflow-x: hidden;
 }
 
 .masthead {
@@ -75,12 +76,21 @@ input,
 		font-size: 2em;
 	}
 	
+	input {
+		width: 400px;
+	}
+	
 	input::-webkit-outer-spin-button,
 	input::-webkit-inner-spin-button {
 	    /* display: none; <- Crashes Chrome on hover */
 	    -webkit-appearance: none;
 	    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 	}
+}
+
+.bpmContainer {
+	max-width: 400px;
+	margin: 0 auto;
 }
 
 .bpm-output {
