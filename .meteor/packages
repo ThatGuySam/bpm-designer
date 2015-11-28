@@ -21,3 +21,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 flemay:less-autoprefixer
 semantic:ui
 natestrauser:animate-css
+gwendall:template-animations

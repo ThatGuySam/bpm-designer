@@ -19,9 +19,9 @@ if (Meteor.isClient) {
 		//video:		{},
 	};
 	
-	Session.set('bpmValue', [
-		{},
-	]);
+	Session.set('bpmValue', []);
+	
+	Session.set('bpmContainer', { classes: "empty" });
 	
 	//Is number
 	function isInt(value) {
@@ -34,6 +34,7 @@ if (Meteor.isClient) {
 		
 		var output = [];
 		
+		t = 0; 
 		for (var key in bpmItemTypes) {
 			if (bpmItemTypes.hasOwnProperty(key)) {
 				
@@ -46,6 +47,8 @@ if (Meteor.isClient) {
 				
 				outputType.secondary = "";
 				
+				outputType.animDelay = (200 * t) + 50;
+				
 				for (i = 1; i < itemType.outputs.length; i++) { 
 					
 					var number = (Math.round( itemType.getOutputs(bpm,itemType.outputs[i]) * 100 ) / 100).toString();
@@ -55,6 +58,7 @@ if (Meteor.isClient) {
 				
 				output.push( outputType );
 				
+				t++;
 			} else {
 				//console.log( bpmItemTypes[key] );
 			}
@@ -83,7 +87,7 @@ if (Meteor.isClient) {
 			
 			var	bpm = event.target.value;
 			
-			console.log( event.target.value );
+			//console.log( event.target.value );
 			
 			var isNumber = isInt(bpm);
 			
@@ -93,11 +97,13 @@ if (Meteor.isClient) {
 				var bpmInt = parseInt(bpm);
 				
 				Session.set('bpmValue', parseBPM(bpmInt));
+				Session.set('bpmContainer', { classes: "has-items" })
 				
-				console.log( Session.get('bpmValue') );
+				//console.log( Session.get('bpmValue') );
 				
 			} else if( bpm == "" ){
-				Session.set('bpmValue', [{}]);
+				Session.set('bpmValue', []);
+				Session.set('bpmContainer', { classes: "empty" });
 			} else {//Not a number
 				console.log("That's no M00N");
 			}
@@ -121,9 +127,40 @@ if (Meteor.isClient) {
 			var output = Session.get('bpmValue');
 			
 			return output;
+		},
+		
+		classes: function() {
+			
+			var bpmContainerProperties = Session.get('bpmContainer');
+			
+			var output = bpmContainerProperties.classes;//Session.get('bpmContainer');
+			
+			return output;
 		}
 	});
 	
+	Template.bpmItem.animations({
+	  ".item": {
+	    container: ".bpm-output", // container of the ".item" elements
+	    insert: {
+	      class: "fadeInUp", // class applied to inserted elements
+	      before: function(attrs, element, template) {}, // callback before the insert animation is triggered
+	      after: function(attrs, element, template) {}, // callback after an element gets inserted
+	      delay: 0 // Delay before inserted items animate
+	    },
+	    remove: {
+	      class: "fadeOutDown", // class applied to removed elements
+	      before: function(attrs, element, template) {}, // callback before the remove animation is triggered
+	      after: function(attrs, element, template) {}, // callback after an element gets removed
+	      delay: 0 // Delay before removed items animate
+	    },
+	    animateInitial: true, // animate the elements already rendered
+	    animateInitialStep: 200, // Step between animations for each initial item
+	    animateInitialDelay: 200 // Delay before the initial items animate
+	  }
+	});
+	
+	//When Template is ready
 	Template.bpmContainer.rendered = function() {//When the BPM interface is loaded...
 		
 		//Define Number Input

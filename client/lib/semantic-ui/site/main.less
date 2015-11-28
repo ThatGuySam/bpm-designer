@@ -61,6 +61,10 @@ input,
 }
 
 
+.pusher {
+	padding: 10% 5%;
+}
+
 .masthead {
     padding: 10%;
     
@@ -79,6 +83,21 @@ input,
 
 .bpm-output {
 	font-size: 1.5em;
+	
+	overflow: hidden;
+	max-height: 0px;
+	.transition(max-height, 1s, 50ms);
+	
+	&.empty {
+		
+	}
+	
+	
+	&.has-items {
+		max-height: 400px;
+		.transition(max-height, 2s, 50ms);
+	}
+	
 	.ui.list .list > .item .header, 
 	.ui.list > .item .header {
 		font-weight: 100;
@@ -101,6 +120,51 @@ input,
     }
 }
 
+
+/* Animation */
+	
+	//cubic-bezier(0.230, 1.000, 0.320, 1.000)
+
+    //Fallback
+    .no-cssanimations .fadeIn {
+        opacity: 1;
+    }
+    
+    //EaseOutQuint
+    .animated,
+    .fadeIn {
+		transition-timing-function:			@primary-ease;
+    }
+
+
+	/* Animation Times - Time for image to fade in
+	---------------------------------------------------- */
+	.animated-3s {
+	        animation-duration:3s;
+	}
+	.animated-5s {
+	        animation-duration:5s;
+	}
+	/* Animation Delay - Time for image to be delayed
+	---------------------------------------------------- */
+	
+	.animated-delay-250ms {
+	        animation-delay:250ms;
+	}
+	.animated-delay-500ms {
+	        animation-delay:500ms;
+	}
+	.animated-delay-1s {
+	        animation-delay:1s;
+	}
+	.animated-delay-3s {
+	        animation-delay:3s;
+	}
+	.animated-delay-5s {
+	        animation-delay:5s;
+	}
+
+/*
 
 
 /* -------------------
