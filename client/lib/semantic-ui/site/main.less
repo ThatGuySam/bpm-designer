@@ -1,0 +1,89 @@
+// General styles, e. g. for the body tag
+@import 'variables';
+
+/* -------------------
+    Main Content
+   ------------------- */
+
+body, #main {
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    color: @primaryFontColor;
+    font-family: @primaryFontFamily;
+    background: @primaryDark;
+}
+
+a {
+    color: inherit;
+    transition: 0.3s color;
+
+    &:hover {
+        color: @primaryLinkHoverColor;
+    }
+}
+
+.icon {
+    &.orange {
+        color: @html5Orange;
+    }
+}
+
+input,
+.ui.input input,
+.ui.input.focus input, 
+.ui.input input:focus {
+	
+	color: @blue1;
+	
+	&::-webkit-input-placeholder {
+		color: @lightSecondaryColor;
+	}
+	
+	&:-moz-placeholder {
+		color: @lightSecondaryColor;
+	}
+	
+	&::-moz-placeholder {
+		color: @lightSecondaryColor;
+	}
+	
+	&:-ms-input-placeholder {
+		color: @lightSecondaryColor;
+	}
+	
+	
+}
+
+
+.masthead {
+    padding: 10%;
+    
+    .bpminput {
+		font-weight: 300;
+		font-size: 2em;
+	}
+	
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	    /* display: none; <- Crashes Chrome on hover */
+	    -webkit-appearance: none;
+	    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+	}
+}
+
+.site-wrapper {
+    margin: 0 auto;
+    max-width: @largeDesktopWidth;
+}
+
+/* -------------------
+    Footer
+   ------------------- */
+.padding-wrapper.footer {
+    //.border-radius(0px);
+
+    a:hover {
+        color: @secondaryLinkHoverColor;
+    }
+}

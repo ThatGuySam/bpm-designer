@@ -1,0 +1,73 @@
+<template name="bpmContainer">
+	
+	<div class="ui massive transparent input">
+		<input id="bpminput" class="bpminput" type="number" placeholder="type a bpm..." max="3" autofocus>
+	</div>
+	
+	<div class="bpm-output" style="text-align: left;">
+		
+		<div class="ui relaxed divided inverted list">
+			
+			{{#each bpmItems}}
+				{{> bpmItem}}
+			{{/each}}
+			
+			<div class="item">
+				<i class="large middle aligned icon">×</i>
+				<div class="content">
+					<a class="header">Semantic-Org/Semantic-UI</a>
+					<div class="description">Updated 10 mins ago</div>
+					<span class="value">123</span>
+				</div>
+			</div>
+			<div class="item">
+				<i class="large middle aligned icon">÷</i>
+				<div class="content">
+					<a class="header">Semantic-Org/Semantic-UI-Docs</a>
+					<div class="description">Updated 22 mins ago</div>
+					<span class="value">123</span>
+				</div>
+			</div>
+			
+		</div><!-- .list -->
+		
+		<div class="">
+			<h3 class="ui dividing inverted header">MULTIPLES</h3>
+			<span class="half">
+				<span class="multiplier">/2: </span>
+				<span class="value">123</span>
+			</span>
+			<span class="times-two">
+				<span class="multiplier">x2: </span>
+				<span class="value">123</span>
+			</span>
+			<span class="times-three">
+				<span class="multiplier">x3: </span>
+				<span class="value">123</span>
+			</span>
+			<span class="times-four">
+				<span class="multiplier">x4: </span>
+				<span class="value">123</span>
+			</span>
+		</div>
+		<br>
+		
+		<h3 class="ui dividing inverted header">BPS</h3>
+		<div class="bps-output ui dividing">
+			<span class="times-two">
+				<span class="multiplier">bps x2: </span>
+				<span class="value">1.23</span>
+			</span>
+			<span class="times-three">
+				<span class="multiplier">bps x3: </span>
+				<span class="value">1.23</span>
+			</span>
+			<span class="times-four">
+				<span class="multiplier">bps x4: </span>
+				<span class="value">1.23</span>
+			</span>
+		</div>
+		
+	</div>
+	
+</template>
