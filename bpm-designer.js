@@ -177,25 +177,10 @@ if (Meteor.isClient) {
 		//Define Number Input
 		bpminput = document.getElementById("bpminput");
 		
-		//Can you see it?
-		//console.log(bpminput);
-		
 		//Onload Focus 
 		bpminput.focus();
 		
 	};
-	
-/*
-	Template.bpmContainer.bpmItems = function() {
-	    var objects = Template.bpmContainer.objects();
-	
-	    for(var i = 0; i=objects.length; i++) {
-	        objects[i].index = i;
-	    }
-	
-	    return objects;
-	}
-*/
 	
 
 }
