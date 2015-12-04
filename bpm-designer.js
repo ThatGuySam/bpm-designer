@@ -212,5 +212,10 @@ Meteor.methods({
 		
 		Resolutions.update(id, {$set: {private: private}});
 		
+	},
+	getHost: function() {
+		var host = this.connection.httpHeaders.host;
+		
+		return host;
 	}
 });
