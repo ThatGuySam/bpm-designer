@@ -81,7 +81,20 @@ if (Meteor.isClient) {
 	
 	//Templating Functions
 	Template.body.helpers({
-		
+		message: function() {
+			
+			Meteor.call("getHost", function(err, data) {
+				if (err)
+			    	console.log(err);
+			
+				Session.set('host', data);
+				
+			});
+			
+			var output = Session.get('host');
+			
+			return output;
+		},
 	});
 	
 /*
