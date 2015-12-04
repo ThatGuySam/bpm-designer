@@ -1,15 +1,18 @@
 {
-	"name": "bpm-designer",
-	"version": "1.0.0",
-	"description": "Tool for designing lightshows based on bpm",
-	"main": "bpm-designer.html",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/ThatGuySam/bpm-designer.git"
-	}
-	"author": "Sam Carlton",
-	"license": "ISC"
+  "name": "bpm-designer",
+  "version": "1.0.0",
+  "description": "Tool for designing lightshows based on bpm",
+  "main": "bpm-designer.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ThatGuySam/bpm-designer.git"
+  },
+  "author": "Sam Carlton",
+  "license": "ISC",
+  "dependencies": {
+    "echojs": "0.1.4"
+  }
 }
