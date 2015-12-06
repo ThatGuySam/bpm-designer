@@ -1,4 +1,7 @@
+EchoTracks = new Mongo.Collection('echotracks');
+
 if (Meteor.isClient) {
+	Meteor.subscribe("echotracks");
 	
 	var value = 0;
 	var bpminput;
