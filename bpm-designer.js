@@ -22,6 +22,8 @@ if (Meteor.isClient) {
 		//video:		{},
 	};
 	
+	
+	//Web Font Loader
 	WebFontConfig = {
 		typekit: { id: 'xes4zaz' }
 	};
@@ -32,6 +34,8 @@ if (Meteor.isClient) {
 		s.parentNode.insertBefore(wf, s);
 	})(document);
 	
+	
+	//Initial BPM Values
 	Session.set('bpmValue', []);
 	
 	Session.set('bpmContainer', { classes: "empty" });
