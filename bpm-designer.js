@@ -206,36 +206,77 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
+	
+	var echojs = Meteor.npmRequire('echojs');
+	
 	Meteor.startup(function () {
 		// code to run on server at startup
+		
 	});
+	
+	//Server Side Processing
+	Meteor.methods({
+		getTrack: function(data) {//Always runs
+			var echo = EchoTracks.findOne(data.id);
+			
+			//EchoTracks.update(id, {$set: { checked: checked}});
+			
+			return echo;
+		},
+		cacheTrack: function(data) {//Runs for new or outdated tracks
+			EchoTracks.insert({
+				title:		title,
+				createdAt:	new Date(),
+				owner: Meteor.userId()
+			});
+		},
+		getHost: function() {
+			var host = this.connection.httpHeaders.host;
+			
+			return host;
+		},
+		echonest: function() {
+			
+			var output = {};
+			
+			//API Auth
+			var echo = echojs({
+				key: Meteor.settings.echonestKey
+			});
+			
+			//Get Echonest results
+			var output = Async.runSync(function(done) {//Wait get() to finish
+				echo('song/search').get({
+					combined: 'oceans hillsong',
+					results: 4,
+					//sort: "song_hotttnesss-asc",
+					bucket: [
+						"audio_summary",
+						"song_type",
+						"id:spotify",
+						"id:spotify-WW"
+					]
+				}, function (err, json) {
+					
+					done( err.response, json.response);
+					
+					if( err.response || json.response.status.code != 0 ) console.log("Error: "+err.response);
+					
+					if( json.response.status.code == 429 ) console.log("Rate Limit Exceeded");
+					
+					//console.log(json.response.songs);
+				});
+				
+			});
+			
+			return output.result.songs;
+		},
+		serverMessage: function() {
+			
+			var output = "";
+			
+			return output;
+		}
+	});
+
 }
-
-
-//Server Side Processing
-Meteor.methods({
-	deleteResolution: function(id) {
-		var res = Resolutions.findOne(id);
-		
-		if( res.owner !== Meteor.userId() ) {
-			throw new Meteor.error('not-authorized');
-		}
-		
-		Resolutions.remove(id);
-	},
-	setPrivate: function(id, private) {
-		var res = Resolutions.findOne(id);
-		
-		if( res.owner !== Meteor.userId() ) {
-			throw new Meteor.error('not-authorized');
-		}
-		
-		Resolutions.update(id, {$set: {private: private}});
-		
-	},
-	getHost: function() {
-		var host = this.connection.httpHeaders.host;
-		
-		return host;
-	}
-});
