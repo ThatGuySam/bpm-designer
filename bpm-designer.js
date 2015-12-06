@@ -104,12 +104,6 @@ if (Meteor.isClient) {
 		},
 	});
 	
-/*
-	Template.registerHelper function (name, func) {                                                                             
-		Blaze._globalHelpers[name] = func;                                                                                   
-	} 
-*/
-	
 	
 	
 	Template.body.events({
