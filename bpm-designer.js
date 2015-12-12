@@ -24,6 +24,9 @@ if (Meteor.isClient) {
 		//video:		{},
 	};
 	
+	var multiples = bpmItemTypes.multiples;
+	var divisibles = bpmItemTypes.divisibles;
+	
 	
 	//Web Font Loader
 	WebFontConfig = {
