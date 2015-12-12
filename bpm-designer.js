@@ -1,5 +1,7 @@
 EchoTracks = new Mongo.Collection('echotracks');
 
+const RESULTS_COUNT = 6;
+
 if (Meteor.isClient) {
 	Meteor.subscribe("echotracks");
 	
