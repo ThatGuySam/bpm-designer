@@ -147,17 +147,11 @@ if (Meteor.isClient) {
 	Template.body.helpers({
 		message: function() {
 			
-			Meteor.call("getHost", function(err, data) {
-				if (err)
-			    	console.log(err);
+			//var output = JSON.stringify( Session.get('message') );
 			
-				Session.set('host', data);
-				
-			});
+			//console.log( Session.get('message') );
 			
-			var output = Session.get('host');
-			
-			return output;
+			//return output;
 		},
 	});
 	
