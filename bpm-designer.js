@@ -285,7 +285,6 @@ if (Meteor.isServer) {
 	
 	Meteor.startup(function () {
 		// code to run on server at startup
-		
 /*
 		Meteor.publish('results', function() {
 			return Results.find();
@@ -295,8 +294,8 @@ if (Meteor.isServer) {
 	
 	//Server Side Processing
 	Meteor.methods({
-		getTrack: function(data) {//Always runs
-			var echo = EchoTracks.findOne(data.id);
+		getTrack: function(song) {//Always runs
+			var echo = EchoTracks.findOne(song.id);
 			
 			//EchoTracks.update(id, {$set: { checked: checked}});
 			
