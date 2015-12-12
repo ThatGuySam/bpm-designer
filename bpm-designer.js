@@ -276,7 +276,12 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
 	
+	//Echnest API
 	var echojs = Meteor.npmRequire('echojs');
+	var echoClient = echojs({key: Meteor.settings.echonestKey });
+	//Genius API
+	var Genius = Meteor.npmRequire('node-genius');
+	var geniusClient = new Genius(process.env.GENIUS_ACCESS_TOKEN);
 	
 	Meteor.startup(function () {
 		// code to run on server at startup
