@@ -285,11 +285,7 @@ if (Meteor.isServer) {
 	
 	Meteor.startup(function () {
 		// code to run on server at startup
-/*
-		Meteor.publish('results', function() {
-			return Results.find();
-		});
-*/
+		
 	});
 	
 	//Server Side Processing
@@ -319,17 +315,7 @@ if (Meteor.isServer) {
 				}
 			},
 			{ upsert: 1 });
-			
-			
-/*
-			EchoTracks.insert({
-				createdAt:	new Date(),
-				_id:		song.id,
-				artist:		song.artist_name,
-				title:		song.title,
-				data:		song,
-			});
-*/
+
 		},
 		getHost: function() {
 			var host = this.connection.httpHeaders.host;
@@ -376,7 +362,7 @@ if (Meteor.isServer) {
 		},
 		serverMessage: function() {
 			
-			var output = "";
+			var output = false;
 			
 			return output;
 		}
