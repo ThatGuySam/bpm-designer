@@ -35,3 +35,6 @@ node_modules
 
 # Meteor Packages
 packages
+
+# App Specific settings
+settings.json
