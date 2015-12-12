@@ -109,7 +109,7 @@ if (Meteor.isClient) {
 			
 			//TODO: Check if it's cached first
 			
-			Meteor.call("cacheTrack", song);
+			Meteor.call("cacheTrack", song);//TODO: Move Serverside for smarter security
 			
 			songOutput.subHeader = song.title + " - " + song.artist_name;
 			
@@ -295,6 +295,12 @@ if (Meteor.isServer) {
 	//Server Side Processing
 	Meteor.methods({
 		getTrack: function(song) {//Always runs
+			
+			//Check client data
+			check( song, {
+			  id: String
+			});
+			
 			var echo = EchoTracks.findOne(song.id);
 			
 			//EchoTracks.update(id, {$set: { checked: checked}});
@@ -302,10 +308,6 @@ if (Meteor.isServer) {
 			return echo;
 		},
 		cacheTrack: function(song) {//Runs for new or outdated tracks
-			
-			//var echo = EchoTracks.findOne(song.id);
-			
-			//console.log( echo );
 			
 			EchoTracks.update(song.id, {
 				$set: {
@@ -335,6 +337,8 @@ if (Meteor.isServer) {
 			return host;
 		},
 		echonest: function(val) {
+			
+			check( val, String);
 			
 			var output = {};
 			
