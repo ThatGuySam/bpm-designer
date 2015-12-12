@@ -292,12 +292,33 @@ if (Meteor.isServer) {
 			
 			return echo;
 		},
-		cacheTrack: function(data) {//Runs for new or outdated tracks
+		cacheTrack: function(song) {//Runs for new or outdated tracks
+			
+			//var echo = EchoTracks.findOne(song.id);
+			
+			//console.log( echo );
+			
+			EchoTracks.update(song.id, {
+				$set: {
+					createdAt:	new Date(),
+					_id:		song.id,
+					artist:		song.artist_name,
+					title:		song.title,
+					data:		song,
+				}
+			},
+			{ upsert: 1 });
+			
+			
+/*
 			EchoTracks.insert({
-				title:		title,
 				createdAt:	new Date(),
-				owner: Meteor.userId()
+				_id:		song.id,
+				artist:		song.artist_name,
+				title:		song.title,
+				data:		song,
 			});
+*/
 		},
 		getHost: function() {
 			var host = this.connection.httpHeaders.host;
