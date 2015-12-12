@@ -28,3 +28,4 @@ meteorhacks:async
 isjs:is
 meteorhacks:search-source
 check
+audit-argument-checks
