@@ -329,11 +329,6 @@ if (Meteor.isServer) {
 			
 			var output = {};
 			
-			//API Auth
-			var echo = echojs({
-				key: Meteor.settings.echonestKey
-			});
-			
 			//Get Echonest results
 			var output = Async.runSync(function(done) {//Wait get() to finish
 				echo('song/search').get({
