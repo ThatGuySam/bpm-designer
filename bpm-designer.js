@@ -86,8 +86,6 @@ if (Meteor.isClient) {
 				output.push( outputType );
 				
 				t++;
-			} else {
-				//console.log( bpmItemTypes[key] );
 			}
 		}
 		
