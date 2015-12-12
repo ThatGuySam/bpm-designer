@@ -90,6 +90,58 @@ if (Meteor.isClient) {
 		
 	}
 	
+	function getBPM(songs) {
+		
+		var output = [];
+		
+		//console.log( songs );
+		
+		if( is.undefined( songs.length ) ) {console.log(val); console.log(songs);}
+		
+		for (t = 0; t < songs.length; t++) {
+			
+			var song = songs[t];
+			var songOutput = {};
+			var bpm = song.audio_summary.tempo;
+			
+			//TODO: Check if it's cached first
+			
+			Meteor.call("cacheTrack", song);
+			
+			songOutput.subHeader = song.title + " - " + song.artist_name;
+			
+			songOutput.header = (Math.round( bpm * 100 ) / 100).toString();
+			
+			//songOutput.secondary = song.artist_name;
+			
+/*
+			for (i = 0; i < multiples.outputs.length; i++) { 
+				
+				var number = (Math.round( multiples.getOutputs(bpm,multiples.outputs[i]) * 100 ) / 100).toString();
+				
+				multiples.secondary += number + " ";
+			}
+*/
+			
+			songOutput.animDelay = (200 * t) + 50;
+			
+			output.push( songOutput );
+		}
+		
+		return output;
+		
+	}
+	
+	function generateOutput(output, classes) {
+		
+		console.log( "Output: " );
+		console.log( output );
+				
+		Session.set('bpmValue', output);
+		Session.set('bpmContainer', { classes: "has-items" });
+		Session.set('bpmContainer', { maxHeight: RESULTS_COUNT + "px" });
+		
+	}
 	
 	//Templating Functions
 	Template.body.helpers({
