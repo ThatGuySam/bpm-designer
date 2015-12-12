@@ -159,31 +159,52 @@ if (Meteor.isClient) {
 	});
 	
 	
-	
 	Template.body.events({
 		'keyup #bpminput': function(event){//Keyup Listener
 			
-			var	bpm = event.target.value;
+			var	val = event.target.value;
+			var output;
 			
-			//console.log( event.target.value );
+			inputTimer && clearTimeout(inputTimer);
 			
-			var isNumber = isInt(bpm);
-			
-			//Is it a number
-			if( isNumber !== false && bpm != "" ) {
+			//Is it empty?
+			if( val != "" ) {
 				
-				var bpmInt = parseInt(bpm);
+				//var bpmInt = parseInt(val);
+				var classes = "has-items";
 				
-				Session.set('bpmValue', parseBPM(bpmInt));
-				Session.set('bpmContainer', { classes: "has-items" })
-				
+					
+				inputTimer = setTimeout(function() {
+					
+					if( isInt(val) ){
+						output = parseBPM(val);
+					} else {
+					
+						console.log( "Search started" );
+						
+						Meteor.call("echonest", val, function(err, data) {
+							if (err)
+								console.log(err);
+							
+							Session.set('message', data);
+							
+						});
+						
+						var songs = Session.get('message');
+						
+						output = getBPM(songs);
+						
+						generateOutput(output, classes);
+						
+					}
+					
+				}, 750);//inputTimer function
+					
 				//console.log( Session.get('bpmValue') );
 				
-			} else if( bpm == "" ){
+			} else if( val == "" ){
 				Session.set('bpmValue', []);
 				Session.set('bpmContainer', { classes: "empty" });
-			} else {//Not a number
-				console.log("That's no M00N");
 			}
 			 
 			//event.target.title.value = "";
