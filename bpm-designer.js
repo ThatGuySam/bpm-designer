@@ -53,18 +53,22 @@ if (Meteor.isClient) {
 		!isNaN(parseInt(value, 10));
 	}
 	
-	function parseBPM(bpm){
+	function parseBPM(val){
+		
+		var bpm = parseInt(val);
 		
 		var output = [];
 		
 		t = 0; 
 		for (var key in bpmItemTypes) {
-			if (bpmItemTypes.hasOwnProperty(key)) {
+			if ( is.object(bpmItemTypes) ) {
 				
 				var itemType = bpmItemTypes[key];
 				var outputType = {};
 				
 				outputType.icon = itemType.icon;
+				
+				//outputType.subHeader
 				
 				outputType.header = (Math.round( itemType.getOutputs(bpm,itemType.outputs[0]) * 100 ) / 100).toString();
 				
