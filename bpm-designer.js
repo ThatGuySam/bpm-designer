@@ -7,6 +7,7 @@ if (Meteor.isClient) {
 	
 	var value = 0;
 	var bpminput;
+	var inputTimer;
 	
 	var bpmItemTypes = {
 		multiples:	{ 
