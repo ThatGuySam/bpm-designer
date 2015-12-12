@@ -334,23 +334,28 @@ if (Meteor.isServer) {
 			
 			return host;
 		},
-		echonest: function() {
+		echonest: function(val) {
 			
 			var output = {};
 			
 			//Get Echonest results
 			var output = Async.runSync(function(done) {//Wait get() to finish
-				echo('song/search').get({
-					combined: 'oceans hillsong',
-					results: 4,
-					//sort: "song_hotttnesss-asc",
+				echoClient('song/search').get({
+					combined:	val,
+					//artist: "hillsong",
+					results:	RESULTS_COUNT,
+					limit: 		true,
+					//sort: "artist_familiarity-asc",//song_hotttnesss-asc, artist_familiarity-asc, artist_hotttnesss-asc
 					bucket: [
 						"audio_summary",
 						"song_type",
-						"id:spotify",
-						"id:spotify-WW"
+						"tracks",
+						"id:spotify"
+						//"id:spotify-WW"
+						//"id:7digital-US"
 					]
 				}, function (err, json) {
+					
 					
 					done( err.response, json.response);
 					
