@@ -286,6 +286,11 @@ if (Meteor.isServer) {
 	Meteor.startup(function () {
 		// code to run on server at startup
 		
+/*
+		Meteor.publish('results', function() {
+			return Results.find();
+		});
+*/
 	});
 	
 	//Server Side Processing
